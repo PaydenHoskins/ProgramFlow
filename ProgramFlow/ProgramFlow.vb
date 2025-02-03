@@ -49,34 +49,31 @@ Module ProgramFlow
                 End Try
             Loop
             GetOutOfHere = False
-            Do While UserInput <> "Q" And GetOutOfHere = False
-                Console.WriteLine("Select Opertion: ")
-                Console.WriteLine("1.Add")
-                Console.WriteLine("2.Subtract")
-                Console.WriteLine("3.Multiply")
-                Console.WriteLine("4.Divide")
+            Console.WriteLine("Select Opertion: ")
+            Console.WriteLine("1.Add")
+            Console.WriteLine("2.Subtract")
+            Console.WriteLine("3.Multiply")
+            Console.WriteLine("4.Divide")
+            Do Until UserInput = "Q" Or GetOutOfHere = False
                 Console.WriteLine("Input you choice below.")
                 UserInput = Console.ReadLine()
                 Try
                     Operation = CInt(UserInput)
 
-                    If Operation = 1 Then
-                        Console.WriteLine($"{FirstNumber} + {SecondNumber} = " & SecondNumber + FirstNumber)
-                        GetOutOfHere = True
-                    ElseIf Operation = 2 Then
-                        Console.WriteLine($"{FirstNumber} - {SecondNumber} = " & SecondNumber - FirstNumber)
-                        GetOutOfHere = True
-                    ElseIf Operation = 3 Then
-                        Console.WriteLine($"{FirstNumber} * {SecondNumber} = " & SecondNumber * FirstNumber)
-                        GetOutOfHere = True
-                    ElseIf Operation = 4 Then
-                        Console.WriteLine($"{FirstNumber} / {SecondNumber} = " & SecondNumber / FirstNumber)
-                        GetOutOfHere = True
-                    ElseIf Operation > 4 Then
-                        Console.WriteLine($"You choose {Operation} please choose 1-4.")
-                    ElseIf Operation < 1 Then
-                        Console.WriteLine($"You choose {Operation} please choose 1-4.")
-                    End If
+                    Select Case Operation
+                        Case 1
+                            Console.WriteLine($"{FirstNumber} + {SecondNumber} = " & FirstNumber + SecondNumber)
+                        Case 2
+                            Console.WriteLine($"{FirstNumber} - {SecondNumber} = " & FirstNumber - SecondNumber)
+                        Case 3
+                            Console.WriteLine($"{FirstNumber} * {SecondNumber} = " & FirstNumber * SecondNumber)
+                        Case 4
+                            Console.WriteLine($"{FirstNumber} / {SecondNumber} =" & FirstNumber / SecondNumber)
+                        Case CInt("Q")
+                            Console.WriteLine("Bye Bye.")
+                        Case Else
+                            Console.WriteLine("Invalid Option.")
+                    End Select
                 Catch ex As Exception
                     Console.WriteLine($"You choose {Operation} please choose 1-4.")
                 End Try
